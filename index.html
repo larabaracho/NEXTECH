@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexa Tech | Gadgets Futuristas</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #faf8ff;
+            color: #24163c;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding: 20px 7%;
+            background: #211438;
+            color: white;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            color: white;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #c5a8ff;
+        }
+
+        .menu nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .menu nav a {
+            color: white;
+        }
+
+        .menu nav a:hover {
+            color: #c5a8ff;
+        }
+
+        .contador {
+            background: #7652d6;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .hero {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            background: linear-gradient(135deg, #211438, #7652d6);
+            color: white;
+        }
+
+        .hero-conteudo {
+            max-width: 650px;
+        }
+
+        .destaque {
+            color: #9774ef;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .hero .destaque {
+            color: #d9c8ff;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #d0b8ff;
+        }
+
+        .hero-conteudo > p:not(.destaque) {
+            color: #eee6ff;
+            margin-bottom: 28px;
+        }
+
+        .botao {
+            display: inline-block;
+            background: #d0b8ff;
+            color: #211438;
+            padding: 13px 24px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .botao:hover {
+            background: white;
+        }
+
+        .catalogo {
+            padding: 65px 7%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .catalogo h2,
+        .sobre h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .subtitulo {
+            color: #716781;
+        }
+
+        .filtros {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .filtros input,
+        .filtros select {
+            flex: 1;
+            min-width: 200px;
+            padding: 14px;
+            border: 1px solid #d8c7ff;
+            border-radius: 10px;
+            font-size: 15px;
+            background: white;
+            color: #24163c;
+        }
+
+        .lista-produtos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .produto-card {
+            padding: 22px;
+            border-radius: 18px;
+            background: white;
+            border: 1px solid #eee5ff;
+            box-shadow: 0 5px 18px rgba(33, 20, 56, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(118, 82, 214, 0.18);
+        }
+
+        .produto-imagem {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 140px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            background: #f4efff;
+            font-size: 55px;
+        }
+
+        .produto-categoria {
+            display: inline-block;
+            color: #7652d6;
+            background: #f2ecff;
+            padding: 4px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .produto-card h3 {
+            margin: 12px 0;
+            color: #24163c;
+            font-size: 20px;
+        }
+
+        .produto-card p {
+            color: #716781;
+            line-height: 1.6;
+            min-height: 75px;
+        }
+
+        .produto-preco {
+            display: block;
+            margin-top: 18px;
+            color: #7652d6;
+            font-size: 20px;
+        }
+
+        #mensagem-vazia {
+            color: #7652d6;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .sobre {
+            background: #f0eaff;
+            padding: 60px 7%;
+            text-align: center;
+        }
+
+        .sobre .container {
+            max-width: 750px;
+        }
+
+        .sobre p:not(.destaque) {
+            color: #716781;
+            margin-top: 15px;
+        }
+
+        footer {
+            text-align: center;
+            background: #211438;
+            color: #eee6ff;
+            padding: 24px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .lista-produtos {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .menu {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu nav {
+                gap: 12px;
+            }
+
+            .hero {
+                padding: 55px 7%;
+            }
+
+            .lista-produtos {
+                grid-template-columns: 1fr;
+            }
+
+            .filtros {
+                flex-direction: column;
+            }
+
+            .filtros input,
+            .filtros select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="menu">
+        <a href="#inicio" class="logo">Nexa<span>Tech</span></a>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#sobre">Sobre</a>
+            <span class="contador">
+                🛒 Carrinho: <span id="contador-carrinho">0</span>
+            </span>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-conteudo">
+                <p class="destaque">TECNOLOGIA DO FUTURO</p>
+                <h1>Descubra uma nova era de <span>inovação.</span></h1>
+                <p>
+                    Conheça gadgets futuristas que transformam
+                    sua rotina com tecnologia e criatividade.
+                </p>
+                <a href="#catalogo" class="botao">Explorar catálogo</a>
+            </div>
+        </section>
+
+        <section class="catalogo" id="catalogo">
+            <div class="container">
+                <p class="destaque">NOSSOS PRODUTOS</p>
+                <h2>Explore nosso catálogo</h2>
+                <p class="subtitulo">
+                    Encontre a tecnologia ideal para você.
+                </p>
+
+                <div class="filtros">
+                    <input
+                        type="text"
+                        id="busca"
+                        placeholder="Buscar produto pelo nome..."
+                        aria-label="Buscar produto pelo nome"
+                    >
+
+                    <select id="filtro-categoria" aria-label="Filtrar por categoria">
+                        <option value="Todos">Todas as categorias</option>
+                        <option value="Wearables">Wearables</option>
+                        <option value="Casa Inteligente">Casa Inteligente</option>
+                        <option value="Áudio Avançado">Áudio Avançado</option>
+                    </select>
+                </div>
+
+                <div id="lista-produtos" class="lista-produtos"></div>
+
+                <p id="mensagem-vazia" hidden>
+                    Nenhum produto encontrado.
+                </p>
+            </div>
+        </section>
+
+        <section class="sobre" id="sobre">
+            <div class="container">
+                <p class="destaque">SOBRE A NEXA TECH</p>
+                <h2>O futuro começa agora.</h2>
+                <p>
+                    A Nexa Tech apresenta gadgets inovadores que unem
+                    criatividade, praticidade e tecnologia para o dia a dia.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Nexa Tech — Tecnologia e inovação.</p>
+    </footer>
+
+    <script>
+        // Lista de produtos
+        const produtos = [
+            {
+                id: 1,
+                nome: "VisionAR Glass",
+                categoria: "Wearables",
+                descricao: "Óculos inteligentes com GPS e tradução de idiomas em tempo real nas lentes.",
+                imagem: "🥽",
+                preco: 1299.90
+            },
+            {
+                id: 2,
+                nome: "PulseTouch Pro",
+                categoria: "Wearables",
+                descricao: "Pulseira com feedback tátil e vibrações direcionais para games.",
+                imagem: "⌚",
+                preco: 599.90
+            },
+            {
+                id: 3,
+                nome: "AuraRing Control",
+                categoria: "Wearables",
+                descricao: "Anel inteligente que permite controlar dispositivos por gestos no ar.",
+                imagem: "💍",
+                preco: 349.90
+            },
+            {
+                id: 4,
+                nome: "HoloDesk AI",
+                categoria: "Casa Inteligente",
+                descricao: "Assistente de mesa com projeção holográfica 3D interativa.",
+                imagem: "✨",
+                preco: 2499.90
+            },
+            {
+                id: 5,
+                nome: "HydroSmart",
+                categoria: "Casa Inteligente",
+                descricao: "Garrafa com esterilização UV-C e lembretes de hidratação.",
+                imagem: "💧",
+                preco: 229.90
+            },
+            {
+                id: 6,
+                nome: "Orbital Sound",
+                categoria: "Áudio Avançado",
+                descricao: "Caixa de som flutuante com levitação magnética e indução.",
+                imagem: "🔊",
+                preco: 899.90
+            }
+        ];
+
+        // Elementos da página
+        const listaProdutos = document.getElementById("lista-produtos");
+        const campoBusca = document.getElementById("busca");
+        const filtroCategoria = document.getElementById("filtro-categoria");
+        const mensagemVazia = document.getElementById("mensagem-vazia");
+
+        // Exibe os produtos dinamicamente
+        function mostrarProdutos(lista) {
+            listaProdutos.innerHTML = "";
+            mensagemVazia.hidden = lista.length > 0;
+
+            lista.forEach(function(produto) {
+                const card = document.createElement("article");
+                card.className = "produto-card";
+
+                const imagem = document.createElement("div");
+                imagem.className = "produto-imagem";
+                imagem.textContent = produto.imagem;
+
+                const categoria = document.createElement("span");
+                categoria.className = "produto-categoria";
+                categoria.textContent = produto.categoria;
+
+                const nome = document.createElement("h3");
+                nome.textContent = produto.nome;
+
+                const descricao = document.createElement("p");
+                descricao.textContent = produto.descricao;
+
+                const preco = document.createElement("strong");
+                preco.className = "produto-preco";
+                preco.textContent = produto.preco.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+
+                card.appendChild(imagem);
+                card.appendChild(categoria);
+                card.appendChild(nome);
+                card.appendChild(descricao);
+                card.appendChild(preco);
+
+                listaProdutos.appendChild(card);
+            });
+        }
+
+        // Busca e filtro de produtos
+        function filtrarProdutos() {
+            const texto = campoBusca.value.toLowerCase().trim();
+            const categoriaSelecionada = filtroCategoria.value;
+
+            const resultado = produtos.filter(function(produto) {
+                const nomeCombina = produto.nome
+                    .toLowerCase()
+                    .includes(texto);
+
+                const categoriaCombina =
+                    categoriaSelecionada === "Todos" ||
+                    produto.categoria === categoriaSelecionada;
+
+                return nomeCombina && categoriaCombina;
+            });
+
+            mostrarProdutos(resultado);
+        }
+
+        campoBusca.addEventListener("input", filtrarProdutos);
+        filtroCategoria.addEventListener("change", filtrarProdutos);
+
+        // Exibe todos os produtos ao abrir a página
+        mostrarProdutos(produtos);
+    </script>
+
+</body>
+</html>
